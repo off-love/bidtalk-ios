@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-18T08:24:37.772327+09:00",
+  "last_check": "2026-04-18T09:08:21.683753+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -6510,6 +6510,16 @@
       "notified_at": "2026-04-17T21:12:40.867641+09:00",
       "keyword": "전기",
       "notice_type": "bid"
+    },
+    "R26BK01473847-000": {
+      "notified_at": "2026-04-18T09:05:15.931098+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01473875-000": {
+      "notified_at": "2026-04-18T09:05:16.174418+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -8721,6 +8731,16 @@
     "R26BD00215932": {
       "notified_at": "2026-04-18T00:05:57.904589+09:00",
       "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00215936": {
+      "notified_at": "2026-04-18T09:05:16.962237+09:00",
+      "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00215934": {
+      "notified_at": "2026-04-18T09:05:27.661200+09:00",
+      "keyword": "교육",
       "notice_type": "prebid"
     }
   }

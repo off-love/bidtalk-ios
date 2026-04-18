@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-18T12:29:22.583900+09:00",
+  "last_check": "2026-04-18T14:25:36.538884+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -6530,6 +6530,16 @@
       "notified_at": "2026-04-18T12:28:02.411419+09:00",
       "keyword": "용역",
       "notice_type": "bid"
+    },
+    "R26BK01473341-001": {
+      "notified_at": "2026-04-18T14:24:06.287498+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01473341-002": {
+      "notified_at": "2026-04-18T14:24:06.493469+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -8751,6 +8761,16 @@
     "R26BD00215934": {
       "notified_at": "2026-04-18T09:05:27.661200+09:00",
       "keyword": "교육",
+      "notice_type": "prebid"
+    },
+    "R26BD00215946": {
+      "notified_at": "2026-04-18T14:23:54.476670+09:00",
+      "keyword": "영상",
+      "notice_type": "prebid"
+    },
+    "R26BD00215948": {
+      "notified_at": "2026-04-18T14:24:00.486896+09:00",
+      "keyword": "출입통제",
       "notice_type": "prebid"
     }
   }

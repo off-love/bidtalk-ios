@@ -69,6 +69,27 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             notificationService.checkAuthorizationStatus()
+            Task {
+                await NotificationService.syncDeliveredNotifications(context: modelContext)
+                updateAppIconBadge()
+            }
+        }
+        .onChange(of: unreadNotifications.count) {
+            updateAppIconBadge()
+        }
+        .onAppear {
+            Task {
+                await NotificationService.syncDeliveredNotifications(context: modelContext)
+                updateAppIconBadge()
+            }
+        }
+    }
+
+    private func updateAppIconBadge() {
+        if #available(iOS 16.0, *) {
+            UNUserNotificationCenter.current().setBadgeCount(unreadNotifications.count)
+        } else {
+            UIApplication.shared.applicationIconBadgeNumber = unreadNotifications.count
         }
     }
 }

@@ -9,6 +9,7 @@ struct KeywordListView: View {
 
     @State private var newKeyword = ""
     @State private var selectedNotificationType = "all"  // 알림 유형 기본값
+    @State private var selectedBidCategory = "s"         // 업무구분 기본값 (용역)
     @State private var errorMessage: String?
     @State private var showError = false
     @State private var selectedKeyword: Keyword?
@@ -50,7 +51,7 @@ struct KeywordListView: View {
             }
             .sheet(item: $selectedKeyword) { keyword in
                 KeywordDetailSheet(keyword: keyword)
-                    .presentationDetents([.height(280)])
+                    .presentationDetents([.medium, .large])
             }
         }
     }
@@ -105,6 +106,20 @@ struct KeywordListView: View {
                     Text("모두").tag("all")
                     Text("입찰공고").tag("bid")
                     Text("사전규격").tag("pre")
+                }
+                .pickerStyle(.segmented)
+            }
+
+            // 업무구분 선택
+            HStack(spacing: DS.Spacing.xs) {
+                Text("업무구분")
+                    .font(.caption)
+                    .foregroundStyle(DS.Colors.textSecondary)
+
+                Picker("업무구분", selection: $selectedBidCategory) {
+                    Text("용역").tag("s")
+                    Text("공사").tag("c")
+                    Text("물품").tag("g")
                 }
                 .pickerStyle(.segmented)
             }
@@ -173,8 +188,8 @@ struct KeywordListView: View {
                                 }
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
-                                .background(isAdded ? Color.gray.opacity(0.1) : DS.Colors.primaryFallback.opacity(0.1))
-                                .foregroundStyle(isAdded ? DS.Colors.textSecondary : DS.Colors.primaryFallback)
+                                .background(isAdded ? DS.Colors.primaryFallback.opacity(0.1) : Color.gray.opacity(0.1))
+                                .foregroundStyle(isAdded ? DS.Colors.primaryFallback : DS.Colors.textSecondary)
                                 .clipShape(Capsule())
                             }
                             .disabled(isAdded)
@@ -209,6 +224,7 @@ struct KeywordListView: View {
         let result = KeywordManager.addKeyword(
             newKeyword,
             notificationType: selectedNotificationType,
+            bidCategories: selectedBidCategory,
             context: modelContext
         )
         switch result {

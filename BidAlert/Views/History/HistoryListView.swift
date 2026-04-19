@@ -9,6 +9,9 @@ struct HistoryListView: View {
 
     @State private var selectedFilter: NoticeFilter = .all
     @State private var searchText = ""
+    @State private var isEditing = false
+    @State private var selectedItems: Set<PersistentIdentifier> = []
+    @State private var showDeleteConfirm = false
 
     private var filteredHistory: [NotificationHistory] {
         var result = allHistory
@@ -67,44 +70,138 @@ struct HistoryListView: View {
                 if filteredHistory.isEmpty {
                     emptyState
                 } else {
-                    List {
+                    // 편집 모드 시 하단 액션 바
+                    if isEditing {
+                        editingActionBar
+                    }
+
+                    List(selection: isEditing ? $selectedItems : nil) {
                         ForEach(groupedHistory, id: \.key) { group in
                             Section(group.key) {
                                 ForEach(group.items) { item in
                                     HistoryCardView(item: item)
                                         .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
                                         .listRowSeparator(.hidden)
+                                        .tag(item.persistentModelID)
                                         .onTapGesture {
-                                            markAsRead(item)
-                                            if let url = URL(string: item.detailUrl) {
-                                                safariURL = url
+                                            if !isEditing {
+                                                markAsRead(item)
+                                                if let url = URL(string: item.detailUrl) {
+                                                    safariURL = url
+                                                }
                                             }
                                         }
                                         .swipeActions(edge: .trailing) {
-                                            Button(role: .destructive) {
-                                                modelContext.delete(item)
-                                            } label: {
-                                                Label("삭제", systemImage: "trash")
+                                            if !isEditing {
+                                                Button(role: .destructive) {
+                                                    withAnimation {
+                                                        let noticeIdToRemove = item.noticeId
+                                                        modelContext.delete(item)
+                                                        // 명시적 저장으로 삭제 영속화
+                                                        try? modelContext.save()
+                                                        
+                                                        Task {
+                                                            await NotificationService.removeDeliveredNotification(noticeId: noticeIdToRemove)
+                                                        }
+                                                    }
+                                                } label: {
+                                                    Label("삭제", systemImage: "trash")
+                                                }
                                             }
                                         }
                                         .swipeActions(edge: .leading) {
-                                            ShareLink(item: shareText(for: item)) {
-                                                Label("공유", systemImage: "square.and.arrow.up")
+                                            if !isEditing {
+                                                ShareLink(item: shareText(for: item)) {
+                                                    Label("공유", systemImage: "square.and.arrow.up")
+                                                }
+                                                .tint(DS.Colors.primaryFallback)
                                             }
-                                            .tint(DS.Colors.primaryFallback)
                                         }
                                 }
                             }
                         }
                     }
                     .listStyle(.plain)
+                    .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 }
             }
             .background(DS.Colors.bgPrimary)
             .navigationTitle("알림 히스토리")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText, prompt: "공고명, 키워드, 기관 검색")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if !filteredHistory.isEmpty {
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                isEditing.toggle()
+                                if !isEditing {
+                                    selectedItems.removeAll()
+                                }
+                            }
+                        } label: {
+                            Text(isEditing ? "완료" : "편집")
+                                .fontWeight(.medium)
+                        }
+                    }
+                }
+            }
+            .alert("선택한 알림을 삭제합니다", isPresented: $showDeleteConfirm) {
+                Button("삭제 (\(selectedItems.count)건)", role: .destructive) {
+                    deleteSelectedItems()
+                }
+                Button("취소", role: .cancel) {}
+            } message: {
+                Text("선택한 \(selectedItems.count)건의 알림 히스토리를 삭제합니다. 이 작업은 되돌릴 수 없습니다.")
+            }
         }
+    }
+
+    // MARK: - Editing Action Bar
+
+    private var editingActionBar: some View {
+        HStack(spacing: DS.Spacing.lg) {
+            Button {
+                if selectedItems.count == filteredHistory.count {
+                    selectedItems.removeAll()
+                } else {
+                    selectedItems = Set(filteredHistory.map { $0.persistentModelID })
+                }
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: selectedItems.count == filteredHistory.count
+                          ? "checkmark.circle.fill" : "circle")
+                        .foregroundStyle(DS.Colors.primaryFallback)
+                    Text(selectedItems.count == filteredHistory.count ? "전체 해제" : "전체 선택")
+                        .font(.subheadline.weight(.medium))
+                }
+            }
+
+            Spacer()
+
+            if !selectedItems.isEmpty {
+                Text("\(selectedItems.count)건 선택")
+                    .font(.subheadline)
+                    .foregroundStyle(DS.Colors.textSecondary)
+            }
+
+            Spacer()
+
+            Button(role: .destructive) {
+                showDeleteConfirm = true
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "trash")
+                    Text("삭제")
+                        .font(.subheadline.weight(.medium))
+                }
+                .foregroundStyle(selectedItems.isEmpty ? DS.Colors.textSecondary : DS.Colors.danger)
+            }
+            .disabled(selectedItems.isEmpty)
+        }
+        .padding(.horizontal, DS.Spacing.lg)
+        .padding(.vertical, DS.Spacing.sm)
+        .background(DS.Colors.bgSurface)
     }
 
     // MARK: - Empty State
@@ -138,6 +235,27 @@ struct HistoryListView: View {
         }
     }
 
+    private func deleteSelectedItems() {
+        let itemsToDelete = allHistory.filter { selectedItems.contains($0.persistentModelID) }
+        let noticeIdsToRemove = itemsToDelete.map { $0.noticeId }
+        
+        for item in itemsToDelete {
+            modelContext.delete(item)
+        }
+        // 명시적 저장으로 삭제 영속화
+        do {
+            try modelContext.save()
+        } catch {
+            print("❌ 선택 삭제 저장 실패: \(error)")
+        }
+        selectedItems.removeAll()
+        isEditing = false
+        
+        Task {
+            await NotificationService.removeDeliveredNotifications(noticeIds: noticeIdsToRemove)
+        }
+    }
+
     private func shareText(for item: NotificationHistory) -> String {
         var lines = [
             "📋 나라장터 \(item.isBid ? "입찰공고" : "사전규격") 공유",
@@ -163,3 +281,4 @@ struct HistoryListView: View {
 enum NoticeFilter: String, CaseIterable {
     case all, bid, prebid
 }
+

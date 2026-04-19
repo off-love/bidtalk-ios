@@ -21,7 +21,7 @@ struct HistoryCardView: View {
                 // 키워드 뱃지 + 마감 임박
                 HStack(spacing: DS.Spacing.xs) {
                     // 유형 뱃지
-                    Text(item.isBid ? "입찰" : "사전규격")
+                    Text(item.isBid ? "입찰공고" : "사전규격")
                         .font(.caption2.bold())
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
@@ -53,10 +53,9 @@ struct HistoryCardView: View {
                 }
 
                 // 공고명
-                Text(item.title)
+                highlightedTitle(title: item.title, keyword: item.keyword)
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(2)
-                    .foregroundStyle(DS.Colors.textPrimary)
 
                 // 기관 + 업종
                 HStack(spacing: 4) {
@@ -125,5 +124,25 @@ struct HistoryCardView: View {
         .shadow(color: .black.opacity(0.04), radius: 4, y: 2)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(item.keyword) 키워드, \(item.title), \(item.agency), \(item.priceDisplay)")
+    }
+
+    // MARK: - Helpers
+
+    private func highlightedTitle(title: String, keyword: String) -> Text {
+        var attrString = AttributedString(title)
+        
+        guard !keyword.isEmpty, title.localizedCaseInsensitiveContains(keyword) else {
+            return Text(attrString)
+        }
+        
+        var searchRange = attrString.startIndex..<attrString.endIndex
+        while let matchRange = attrString[searchRange].range(of: keyword, options: .caseInsensitive) {
+            attrString[matchRange].backgroundColor = .yellow
+            attrString[matchRange].foregroundColor = .black // 형광색 위에서 잘 보이도록
+            
+            searchRange = matchRange.upperBound..<attrString.endIndex
+        }
+        
+        return Text(attrString)
     }
 }

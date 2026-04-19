@@ -9,7 +9,7 @@ struct OnboardingView: View {
     private let pages: [(icon: String, title: String, subtitle: String)] = [
         (
             "bell.badge.fill",
-            "입찰알리미에\n오신 것을 환영합니다",
+            "입찰톡에\n오신 것을 환영합니다",
             "나라장터 입찰공고와 사전규격을\n가장 빠르게 알려드려요"
         ),
         (

@@ -1,4 +1,4 @@
-import MessageUI
+
 import SwiftData
 import SwiftUI
 
@@ -65,34 +65,7 @@ struct SettingsView: View {
                 }
             }
 
-            // 정보
-            Section("정보") {
-                // 문의하기
-                Button {
-                    sendEmail()
-                } label: {
-                    Label("문의하기", systemImage: "envelope.fill")
-                }
 
-                // 앱 평가
-                Link(destination: URL(string: "https://apps.apple.com/app/id000000000")!) {
-                    Label("앱 평가하기", systemImage: "star.fill")
-                }
-
-                // 오픈소스
-                NavigationLink {
-                    openSourceView
-                } label: {
-                    Label("오픈소스 라이선스", systemImage: "doc.text.fill")
-                }
-
-                LabeledContent {
-                    Text(appVersion)
-                        .foregroundStyle(DS.Colors.textSecondary)
-                } label: {
-                    Label("앱 버전", systemImage: "info.circle.fill")
-                }
-            }
 
             // 면책 조항
             Section {
@@ -103,7 +76,7 @@ struct SettingsView: View {
                         Text("면책 조항")
                             .font(.subheadline.bold())
                     }
-                    Text("본 앱은 조달청(나라장터)의 공식 앱이 아닙니다. 공공데이터포털 OpenAPI를 활용한 비공식 서비스이며, 데이터의 정확성은 원본 시스템(나라장터)을 기준으로 합니다.")
+                    Text("본 앱은 조달청(나라장터)의 공식 앱이 아닙니다. 공공데이터포털 OpenAPI를 활용한 비공식 서비스이며, 데이터의 정확성은 원본 시스템(나라장터)을 기준으로 합니다.\n\n시스템 오류로 인한 알림 누락 시 책임을 지지 않으니 보조 수단으로만 활용 바랍니다. 중요 입찰 정보는 반드시 해당 기관의 공식 사이트에서 직접 확인해 주세요.")
                         .font(.caption)
                         .foregroundStyle(DS.Colors.textSecondary)
                 }
@@ -119,49 +92,25 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Open Source
-
-    private var openSourceView: some View {
-        List {
-            Section("사용된 오픈소스") {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Firebase iOS SDK")
-                        .font(.subheadline.bold())
-                    Text("Apache License 2.0")
-                        .font(.caption)
-                        .foregroundStyle(DS.Colors.textSecondary)
-                }
-            }
-        }
-        .navigationTitle("오픈소스 라이선스")
-    }
-
     // MARK: - Helpers
-
-    private var appVersion: String {
-        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        return "\(version) (\(build))"
-    }
-
     private func resetAllData() {
-        // 모든 키워드 토픽 구독 해제 후 삭제
+        // 1. 초기화 시점 기록 (이 시점 이전의 알림은 저장하지 않음)
+        UserDefaults.standard.set(Date(), forKey: "lastDataResetDate")
+
+        // 2. 시스템 알림 센터의 모든 알림 삭제 (다시 불러오기 방지)
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
+        // 3. 모든 키워드 토픽 구독 해제 후 삭제
         for keyword in allKeywords {
             KeywordManager.removeKeyword(keyword, context: modelContext)
         }
-        // 히스토리 전체 삭제
+        // 4. 히스토리 전체 삭제
         for history in allHistory {
             modelContext.delete(history)
         }
-    }
 
-    private func sendEmail() {
-        let email = "your-email@example.com"
-        let subject = "[입찰알리미] 문의"
-        let body = "\n\n---\n기기: \(UIDevice.current.model)\niOS: \(UIDevice.current.systemVersion)\n앱 버전: \(appVersion)"
-
-        if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")") {
-            UIApplication.shared.open(url)
-        }
+        // 5. 명시적 저장 (삭제가 즉시 영속되도록 보장)
+        try? modelContext.save()
     }
 }

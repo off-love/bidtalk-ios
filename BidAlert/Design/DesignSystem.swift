@@ -10,6 +10,10 @@ enum DS {
         static let danger = Color(light: .init(hex: "E53E3E"), dark: .init(hex: "FC8181"))
         static let success = Color(light: .init(hex: "10B981"), dark: .init(hex: "6EE7B7"))
         static let prebid = Color(light: .init(hex: "7C3AED"), dark: .init(hex: "A78BFA"))
+        
+        // Category Colors
+        static let construction = Color(light: .init(hex: "F97316"), dark: .init(hex: "FB923C"))
+        static let goods = Color(light: .init(hex: "059669"), dark: .init(hex: "34D399"))
 
         static let bgPrimary = Color(light: .init(hex: "F8F9FA"), dark: .init(hex: "1A1A2E"))
         static let bgSurface = Color(light: .white, dark: .init(hex: "16213E"))
@@ -47,7 +51,7 @@ enum DS {
         ("IT/SW", ["소프트웨어", "정보시스템", "클라우드", "AI", "빅데이터", "홈페이지"]),
         ("건설", ["시설물", "도로", "건축", "설계", "감리"]),
         ("보안", ["CCTV", "보안", "영상", "출입통제"]),
-        ("측량", ["측량", "지적측량", "분할측량"]),
+        ("측량", ["지적측량", "확정측량", "측량"]),
         ("기타", ["용역", "컨설팅", "교육", "홍보", "청소", "경비"]),
     ]
 }

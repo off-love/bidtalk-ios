@@ -8,6 +8,15 @@ struct BidAlertApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
+    /// 앱 전체에서 공유하는 단일 ModelContainer
+    static let sharedModelContainer: ModelContainer = {
+        do {
+            return try ModelContainer(for: Keyword.self, NotificationHistory.self)
+        } catch {
+            fatalError("❌ ModelContainer 생성 실패: \(error)")
+        }
+    }()
+
     var body: some Scene {
         WindowGroup {
             if hasCompletedOnboarding {
@@ -16,18 +25,13 @@ struct BidAlertApp: App {
                 OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
             }
         }
-        .modelContainer(for: [Keyword.self, NotificationHistory.self])
+        .modelContainer(Self.sharedModelContainer)
     }
 }
 
 // MARK: - AppDelegate (Firebase + FCM 설정)
 
 class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
-
-    /// SwiftData ModelContainer (알림 저장용)
-    private lazy var modelContainer: ModelContainer? = {
-        try? ModelContainer(for: Keyword.self, NotificationHistory.self)
-    }()
 
     func application(
         _ application: UIApplication,
@@ -63,8 +67,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
     ) {
         // 알림 데이터를 SwiftData에 저장
         saveNotificationToHistory(userInfo: notification.request.content.userInfo)
+        
+        // 앱 아이콘 배지 업데이트
+        updateBadgeCount()
 
-        completionHandler([.banner, .badge, .sound])
+        completionHandler([.banner, .sound])
     }
 
     // 알림 탭 처리 (딥링크) + SwiftData 저장
@@ -89,19 +96,17 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
             )
         }
 
+        // 앱 아이콘 배지 업데이트
+        updateBadgeCount()
+
         completionHandler()
     }
 
     // MARK: - 알림 → SwiftData 저장
 
-    /// userInfo 딕셔너리에서 데이터를 추출하여 SwiftData에 저장
+    /// userInfo 딕셔너리에서 데이터를 추출하여 SwiftData에 저장 (공유 ModelContainer 사용)
     @MainActor
     private func saveNotificationToHistory(userInfo: [AnyHashable: Any]) {
-        guard let container = modelContainer else {
-            print("❌ ModelContainer 초기화 실패")
-            return
-        }
-
         // [AnyHashable: Any] → [String: String] 변환
         var data: [String: String] = [:]
         for (key, value) in userInfo {
@@ -115,9 +120,25 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
             return
         }
 
-        let context = container.mainContext
+        let context = BidAlertApp.sharedModelContainer.mainContext
         NotificationService.saveNotification(data: data, context: context)
         print("✅ 알림 히스토리 저장 완료: \(data["title"] ?? "")")
+    }
+
+    /// 앱 아이콘 배지 카운트 업데이트
+    @MainActor
+    private func updateBadgeCount() {
+        let context = BidAlertApp.sharedModelContainer.mainContext
+        let descriptor = FetchDescriptor<NotificationHistory>(
+            predicate: #Predicate { $0.isRead == false }
+        )
+        let count = (try? context.fetchCount(descriptor)) ?? 0
+        
+        if #available(iOS 16.0, *) {
+            UNUserNotificationCenter.current().setBadgeCount(count)
+        } else {
+            UIApplication.shared.applicationIconBadgeNumber = count
+        }
     }
 }
 

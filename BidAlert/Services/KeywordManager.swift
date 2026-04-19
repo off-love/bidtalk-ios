@@ -8,7 +8,7 @@ final class KeywordManager {
     static let maxKeywords = 20
 
     /// 키워드를 추가하고 FCM 토픽을 구독합니다
-    static func addKeyword(_ text: String, notificationType: String = "all", context: ModelContext) -> Result<Keyword, KeywordError> {
+    static func addKeyword(_ text: String, notificationType: String = "all", bidCategories: String = "s,c,g", context: ModelContext) -> Result<Keyword, KeywordError> {
         let trimmed = text.trimmingCharacters(in: .whitespaces)
 
         // 입력 검증
@@ -28,7 +28,7 @@ final class KeywordManager {
         }
 
         // 키워드 생성 + 저장
-        let keyword = Keyword(text: trimmed, notificationType: notificationType)
+        let keyword = Keyword(text: trimmed, notificationType: notificationType, bidCategories: bidCategories)
         context.insert(keyword)
 
         // FCM 토픽 구독
@@ -60,6 +60,18 @@ final class KeywordManager {
         unsubscribeAllTopics(for: keyword)
         // 유형 변경
         keyword.notificationType = type
+        // 새 토픽 구독
+        if keyword.isActive {
+            subscribeTopics(for: keyword)
+        }
+    }
+
+    /// 업무구분 변경
+    static func updateBidCategories(_ keyword: Keyword, categories: String) {
+        // 기존 토픽 모두 해제
+        unsubscribeAllTopics(for: keyword)
+        // 업무구분 변경
+        keyword.bidCategories = categories
         // 새 토픽 구독
         if keyword.isActive {
             subscribeTopics(for: keyword)

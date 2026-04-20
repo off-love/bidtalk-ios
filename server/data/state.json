@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-20T08:14:32.519395+09:00",
+  "last_check": "2026-04-20T09:03:44.345455+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -6590,6 +6590,31 @@
       "notified_at": "2026-04-20T08:13:59.911657+09:00",
       "keyword": "환경",
       "notice_type": "bid"
+    },
+    "R26BK01466870-000": {
+      "notified_at": "2026-04-20T08:55:04.407004+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01468961-000": {
+      "notified_at": "2026-04-20T08:55:04.672327+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01474486-000": {
+      "notified_at": "2026-04-20T08:59:08.495614+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01469111-000": {
+      "notified_at": "2026-04-20T09:01:17.527965+09:00",
+      "keyword": "방수",
+      "notice_type": "bid"
+    },
+    "R26BK01474532-000": {
+      "notified_at": "2026-04-20T09:01:56.717360+09:00",
+      "keyword": "소방",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -8846,6 +8871,26 @@
     "R26BD00215998": {
       "notified_at": "2026-04-19T19:02:20.485137+09:00",
       "keyword": "건축",
+      "notice_type": "prebid"
+    },
+    "R26BD00216011": {
+      "notified_at": "2026-04-20T09:02:51.463664+09:00",
+      "keyword": "의료",
+      "notice_type": "prebid"
+    },
+    "R26BD00216008": {
+      "notified_at": "2026-04-20T09:03:06.816561+09:00",
+      "keyword": "차량",
+      "notice_type": "prebid"
+    },
+    "R26BD00216010": {
+      "notified_at": "2026-04-20T09:03:06.989890+09:00",
+      "keyword": "차량",
+      "notice_type": "prebid"
+    },
+    "R26BD00216023": {
+      "notified_at": "2026-04-20T09:03:07.154693+09:00",
+      "keyword": "차량",
       "notice_type": "prebid"
     }
   }

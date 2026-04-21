@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-22T07:44:05.645175+09:00",
+  "last_check": "2026-04-22T08:29:18.981952+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -9620,6 +9620,116 @@
       "notified_at": "2026-04-22T07:43:22.297534+09:00",
       "keyword": "전기",
       "notice_type": "bid"
+    },
+    "R26BK01479527-000": {
+      "notified_at": "2026-04-22T08:22:33.451622+09:00",
+      "keyword": "AI",
+      "notice_type": "bid"
+    },
+    "R26BK01479727-000": {
+      "notified_at": "2026-04-22T08:22:33.596640+09:00",
+      "keyword": "AI",
+      "notice_type": "bid"
+    },
+    "R26BK01479606-000": {
+      "notified_at": "2026-04-22T08:22:34.025962+09:00",
+      "keyword": "AI",
+      "notice_type": "bid"
+    },
+    "R26BK01480663-000": {
+      "notified_at": "2026-04-22T08:23:06.698896+09:00",
+      "keyword": "도로",
+      "notice_type": "bid"
+    },
+    "R26BK01475642-000": {
+      "notified_at": "2026-04-22T08:23:08.836632+09:00",
+      "keyword": "도로",
+      "notice_type": "bid"
+    },
+    "R26BK01478414-000": {
+      "notified_at": "2026-04-22T08:23:29.810958+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01480511-000": {
+      "notified_at": "2026-04-22T08:23:30.217400+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01480539-000": {
+      "notified_at": "2026-04-22T08:23:30.422282+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01480825-000": {
+      "notified_at": "2026-04-22T08:23:30.572554+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01480813-001": {
+      "notified_at": "2026-04-22T08:24:19.299806+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01480826-000": {
+      "notified_at": "2026-04-22T08:24:19.473401+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01476079-001": {
+      "notified_at": "2026-04-22T08:24:19.728980+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01480831-000": {
+      "notified_at": "2026-04-22T08:24:19.884033+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01480832-000": {
+      "notified_at": "2026-04-22T08:24:20.070542+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01480722-000": {
+      "notified_at": "2026-04-22T08:24:20.238533+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01480751-000": {
+      "notified_at": "2026-04-22T08:24:46.851089+09:00",
+      "keyword": "교육",
+      "notice_type": "bid"
+    },
+    "R26BK01480839-000": {
+      "notified_at": "2026-04-22T08:24:57.002081+09:00",
+      "keyword": "홍보",
+      "notice_type": "bid"
+    },
+    "R26BK01477509-000": {
+      "notified_at": "2026-04-22T08:27:52.100234+09:00",
+      "keyword": "전기",
+      "notice_type": "bid"
+    },
+    "R26BK01480202-000": {
+      "notified_at": "2026-04-22T08:27:52.250025+09:00",
+      "keyword": "전기",
+      "notice_type": "bid"
+    },
+    "R26BK01479617-000": {
+      "notified_at": "2026-04-22T08:28:14.337987+09:00",
+      "keyword": "통신",
+      "notice_type": "bid"
+    },
+    "R26BK01480822-000": {
+      "notified_at": "2026-04-22T08:28:56.068632+09:00",
+      "keyword": "차량",
+      "notice_type": "bid"
+    },
+    "R26BK01478468-000": {
+      "notified_at": "2026-04-22T08:29:07.890521+09:00",
+      "keyword": "환경",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -12106,6 +12216,21 @@
     "R26BD00217418": {
       "notified_at": "2026-04-22T07:41:19.777616+09:00",
       "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00217420": {
+      "notified_at": "2026-04-22T08:24:27.811396+09:00",
+      "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00217422": {
+      "notified_at": "2026-04-22T08:24:28.001581+09:00",
+      "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00217421": {
+      "notified_at": "2026-04-22T08:26:35.882818+09:00",
+      "keyword": "조사",
       "notice_type": "prebid"
     }
   }

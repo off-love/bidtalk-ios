@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-22T07:04:27.411134+09:00",
+  "last_check": "2026-04-22T07:44:05.645175+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -9590,6 +9590,36 @@
       "notified_at": "2026-04-21T23:26:02.357821+09:00",
       "keyword": "연구",
       "notice_type": "bid"
+    },
+    "R26BK01478314-000": {
+      "notified_at": "2026-04-22T07:42:11.323614+09:00",
+      "keyword": "전산",
+      "notice_type": "bid"
+    },
+    "R26BK01480809-000": {
+      "notified_at": "2026-04-22T07:42:42.730581+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01478436-000": {
+      "notified_at": "2026-04-22T07:42:46.877845+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
+    },
+    "R26BK01480813-000": {
+      "notified_at": "2026-04-22T07:43:05.276941+09:00",
+      "keyword": "철거",
+      "notice_type": "bid"
+    },
+    "R26BK01480812-000": {
+      "notified_at": "2026-04-22T07:43:06.309183+09:00",
+      "keyword": "철거",
+      "notice_type": "bid"
+    },
+    "R26BK01477795-000": {
+      "notified_at": "2026-04-22T07:43:22.297534+09:00",
+      "keyword": "전기",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -12071,6 +12101,11 @@
     "R26BD00217201": {
       "notified_at": "2026-04-21T16:19:33.716503+09:00",
       "keyword": "가구",
+      "notice_type": "prebid"
+    },
+    "R26BD00217418": {
+      "notified_at": "2026-04-22T07:41:19.777616+09:00",
+      "keyword": "용역",
       "notice_type": "prebid"
     }
   }

@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-23T12:56:37.179661+09:00",
+  "last_check": "2026-04-23T15:05:55.444961+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -11584,6 +11584,326 @@
     "R26BK01484435-000": {
       "notified_at": "2026-04-23T12:56:22.766774+09:00",
       "keyword": "환경",
+      "notice_type": "bid"
+    },
+    "R26BK01485091-000": {
+      "notified_at": "2026-04-23T14:56:51.612891+09:00",
+      "keyword": "정보시스템",
+      "notice_type": "bid"
+    },
+    "R26BK01482509-001": {
+      "notified_at": "2026-04-23T14:56:51.768125+09:00",
+      "keyword": "정보시스템",
+      "notice_type": "bid"
+    },
+    "R26BK01484609-000": {
+      "notified_at": "2026-04-23T14:56:51.935923+09:00",
+      "keyword": "정보시스템",
+      "notice_type": "bid"
+    },
+    "R26BK01485028-000": {
+      "notified_at": "2026-04-23T14:57:13.903603+09:00",
+      "keyword": "CCTV",
+      "notice_type": "bid"
+    },
+    "R26BK01483887-000": {
+      "notified_at": "2026-04-23T14:57:21.720290+09:00",
+      "keyword": "보안",
+      "notice_type": "bid"
+    },
+    "R26BK01476211-002": {
+      "notified_at": "2026-04-23T14:57:57.639420+09:00",
+      "keyword": "시설물",
+      "notice_type": "bid"
+    },
+    "R26BK01485288-000": {
+      "notified_at": "2026-04-23T14:57:57.816008+09:00",
+      "keyword": "시설물",
+      "notice_type": "bid"
+    },
+    "R26BK01485297-000": {
+      "notified_at": "2026-04-23T14:58:01.775788+09:00",
+      "keyword": "시설물",
+      "notice_type": "bid"
+    },
+    "R26BK01484378-000": {
+      "notified_at": "2026-04-23T14:58:07.527121+09:00",
+      "keyword": "도로",
+      "notice_type": "bid"
+    },
+    "R26BK01485203-000": {
+      "notified_at": "2026-04-23T14:58:10.830488+09:00",
+      "keyword": "도로",
+      "notice_type": "bid"
+    },
+    "R26BK01483662-001": {
+      "notified_at": "2026-04-23T14:58:16.440642+09:00",
+      "keyword": "건축",
+      "notice_type": "bid"
+    },
+    "R26BK01485279-000": {
+      "notified_at": "2026-04-23T14:58:20.589666+09:00",
+      "keyword": "건축",
+      "notice_type": "bid"
+    },
+    "R26BK01485210-000": {
+      "notified_at": "2026-04-23T14:58:22.737823+09:00",
+      "keyword": "건축",
+      "notice_type": "bid"
+    },
+    "R26BK01485059-000": {
+      "notified_at": "2026-04-23T14:58:27.608810+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01485233-000": {
+      "notified_at": "2026-04-23T14:58:27.789125+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01485224-000": {
+      "notified_at": "2026-04-23T14:58:27.965918+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01476069-000": {
+      "notified_at": "2026-04-23T14:58:28.158983+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01485147-001": {
+      "notified_at": "2026-04-23T14:58:28.348885+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
+    },
+    "R26BK01484273-000": {
+      "notified_at": "2026-04-23T14:58:39.954049+09:00",
+      "keyword": "감리",
+      "notice_type": "bid"
+    },
+    "R26BK01485201-000": {
+      "notified_at": "2026-04-23T14:59:28.989138+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01483425-000": {
+      "notified_at": "2026-04-23T14:59:29.225983+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485206-000": {
+      "notified_at": "2026-04-23T14:59:29.446127+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484840-000": {
+      "notified_at": "2026-04-23T14:59:29.614509+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484893-000": {
+      "notified_at": "2026-04-23T14:59:29.771405+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484924-000": {
+      "notified_at": "2026-04-23T14:59:29.947820+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485013-000": {
+      "notified_at": "2026-04-23T14:59:30.096312+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485228-000": {
+      "notified_at": "2026-04-23T14:59:30.298377+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01482131-000": {
+      "notified_at": "2026-04-23T14:59:30.467553+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01475874-001": {
+      "notified_at": "2026-04-23T14:59:30.619557+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485195-000": {
+      "notified_at": "2026-04-23T14:59:30.781178+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01482449-000": {
+      "notified_at": "2026-04-23T14:59:30.942528+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485229-000": {
+      "notified_at": "2026-04-23T14:59:31.117612+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484916-000": {
+      "notified_at": "2026-04-23T14:59:31.302608+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484956-000": {
+      "notified_at": "2026-04-23T14:59:31.461918+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485298-000": {
+      "notified_at": "2026-04-23T14:59:31.888003+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485246-000": {
+      "notified_at": "2026-04-23T14:59:32.078283+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485069-000": {
+      "notified_at": "2026-04-23T14:59:32.241748+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484445-000": {
+      "notified_at": "2026-04-23T14:59:32.402104+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484826-000": {
+      "notified_at": "2026-04-23T14:59:32.629651+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484819-000": {
+      "notified_at": "2026-04-23T14:59:32.785582+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485341-000": {
+      "notified_at": "2026-04-23T14:59:33.044686+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484816-000": {
+      "notified_at": "2026-04-23T14:59:33.229839+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485303-000": {
+      "notified_at": "2026-04-23T14:59:33.436824+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01483714-000": {
+      "notified_at": "2026-04-23T14:59:33.617057+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485306-000": {
+      "notified_at": "2026-04-23T14:59:33.869645+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485235-000": {
+      "notified_at": "2026-04-23T14:59:34.028075+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485095-000": {
+      "notified_at": "2026-04-23T14:59:34.202959+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01485251-000": {
+      "notified_at": "2026-04-23T14:59:34.391871+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01477793-000": {
+      "notified_at": "2026-04-23T14:59:39.814775+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01484478-000": {
+      "notified_at": "2026-04-23T14:59:51.679113+09:00",
+      "keyword": "교육",
+      "notice_type": "bid"
+    },
+    "R26BK01483937-000": {
+      "notified_at": "2026-04-23T14:59:51.892821+09:00",
+      "keyword": "교육",
+      "notice_type": "bid"
+    },
+    "R26BK01485223-000": {
+      "notified_at": "2026-04-23T14:59:57.839102+09:00",
+      "keyword": "교육",
+      "notice_type": "bid"
+    },
+    "R26BK01485153-000": {
+      "notified_at": "2026-04-23T15:01:59.386159+09:00",
+      "keyword": "조경",
+      "notice_type": "bid"
+    },
+    "R26BK01485054-000": {
+      "notified_at": "2026-04-23T15:01:59.831680+09:00",
+      "keyword": "조경",
+      "notice_type": "bid"
+    },
+    "R26BK01485324-000": {
+      "notified_at": "2026-04-23T15:02:37.389389+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01485329-000": {
+      "notified_at": "2026-04-23T15:02:47.506305+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01485252-000": {
+      "notified_at": "2026-04-23T15:02:51.711333+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
+    },
+    "R26BK01485083-000": {
+      "notified_at": "2026-04-23T15:03:22.085514+09:00",
+      "keyword": "개발",
+      "notice_type": "bid"
+    },
+    "R26BK01484854-000": {
+      "notified_at": "2026-04-23T15:03:39.941468+09:00",
+      "keyword": "철거",
+      "notice_type": "bid"
+    },
+    "R26BK01485066-000": {
+      "notified_at": "2026-04-23T15:03:40.127680+09:00",
+      "keyword": "철거",
+      "notice_type": "bid"
+    },
+    "R26BK01484148-001": {
+      "notified_at": "2026-04-23T15:03:40.328167+09:00",
+      "keyword": "철거",
+      "notice_type": "bid"
+    },
+    "R26BK01485179-000": {
+      "notified_at": "2026-04-23T15:03:51.533800+09:00",
+      "keyword": "방수",
+      "notice_type": "bid"
+    },
+    "R26BK01484851-000": {
+      "notified_at": "2026-04-23T15:04:23.792783+09:00",
+      "keyword": "소방",
+      "notice_type": "bid"
+    },
+    "R26BK01485263-000": {
+      "notified_at": "2026-04-23T15:05:17.866725+09:00",
+      "keyword": "차량",
       "notice_type": "bid"
     }
   },

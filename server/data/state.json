@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-24T09:08:53.076474+09:00",
+  "last_check": "2026-04-24T12:53:19.722674+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -12905,6 +12905,26 @@
       "notified_at": "2026-04-24T09:08:41.972543+09:00",
       "keyword": "환경",
       "notice_type": "bid"
+    },
+    "R26BK01482510-000": {
+      "notified_at": "2026-04-24T12:48:02.241261+09:00",
+      "keyword": "건축",
+      "notice_type": "bid"
+    },
+    "R26BK01483421-001": {
+      "notified_at": "2026-04-24T12:49:01.073714+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01487140-000": {
+      "notified_at": "2026-04-24T12:49:01.298012+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01474102-000": {
+      "notified_at": "2026-04-24T12:49:01.522375+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -15591,6 +15611,26 @@
     "R26BD00218870": {
       "notified_at": "2026-04-24T09:06:52.671415+09:00",
       "keyword": "개발",
+      "notice_type": "prebid"
+    },
+    "R26BD00219089": {
+      "notified_at": "2026-04-24T12:48:04.837830+09:00",
+      "keyword": "건축",
+      "notice_type": "prebid"
+    },
+    "R26BD00219088": {
+      "notified_at": "2026-04-24T12:49:04.534010+09:00",
+      "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00219087": {
+      "notified_at": "2026-04-24T12:51:07.550169+09:00",
+      "keyword": "연구",
+      "notice_type": "prebid"
+    },
+    "R26BD00219092": {
+      "notified_at": "2026-04-24T12:53:07.065200+09:00",
+      "keyword": "환경",
       "notice_type": "prebid"
     }
   }

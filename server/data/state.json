@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-27T07:07:14.233327+09:00",
+  "last_check": "2026-04-27T08:00:26.376637+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -13655,6 +13655,11 @@
       "notified_at": "2026-04-27T07:02:26.845060+09:00",
       "keyword": "AI",
       "notice_type": "bid"
+    },
+    "R26BK01487198-000": {
+      "notified_at": "2026-04-27T07:56:53.620204+09:00",
+      "keyword": "설계",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -16460,6 +16465,16 @@
     },
     "R26BD00219539": {
       "notified_at": "2026-04-25T14:31:35.773501+09:00",
+      "keyword": "분석",
+      "notice_type": "prebid"
+    },
+    "R26BD00219568": {
+      "notified_at": "2026-04-27T07:58:06.309976+09:00",
+      "keyword": "서버",
+      "notice_type": "prebid"
+    },
+    "R26BD00219567": {
+      "notified_at": "2026-04-27T07:58:57.496796+09:00",
       "keyword": "분석",
       "notice_type": "prebid"
     }

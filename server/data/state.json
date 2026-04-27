@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-28T07:43:19.952224+09:00",
+  "last_check": "2026-04-28T08:40:18.436893+09:00",
   "notified_bids": {
     "R26BK01448997-001": {
       "notified_at": "2026-04-13T12:50:46.550603+09:00",
@@ -15180,6 +15180,51 @@
       "notified_at": "2026-04-28T07:42:20.028519+09:00",
       "keyword": "의료",
       "notice_type": "bid"
+    },
+    "R26BK01486626-001": {
+      "notified_at": "2026-04-28T08:35:45.496229+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01492179-000": {
+      "notified_at": "2026-04-28T08:35:45.693093+09:00",
+      "keyword": "용역",
+      "notice_type": "bid"
+    },
+    "R26BK01492187-000": {
+      "notified_at": "2026-04-28T08:37:14.313810+09:00",
+      "keyword": "유지보수",
+      "notice_type": "bid"
+    },
+    "R26BK01492171-000": {
+      "notified_at": "2026-04-28T08:38:03.643328+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01492181-000": {
+      "notified_at": "2026-04-28T08:38:03.828742+09:00",
+      "keyword": "조사",
+      "notice_type": "bid"
+    },
+    "R26BK01488334-000": {
+      "notified_at": "2026-04-28T08:38:10.854292+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
+    },
+    "R26BK01492173-000": {
+      "notified_at": "2026-04-28T08:38:11.035050+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
+    },
+    "R26BK01491977-000": {
+      "notified_at": "2026-04-28T08:38:14.233373+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
+    },
+    "R26BK01491969-000": {
+      "notified_at": "2026-04-28T08:38:14.408890+09:00",
+      "keyword": "연구",
+      "notice_type": "bid"
     }
   },
   "notified_prebids": {
@@ -18006,6 +18051,21 @@
     "R26BD00220235": {
       "notified_at": "2026-04-28T00:21:06.747935+09:00",
       "keyword": "식품",
+      "notice_type": "prebid"
+    },
+    "R26BD00220247": {
+      "notified_at": "2026-04-28T08:35:49.533506+09:00",
+      "keyword": "용역",
+      "notice_type": "prebid"
+    },
+    "R26BD00220250": {
+      "notified_at": "2026-04-28T08:37:16.386662+09:00",
+      "keyword": "유지보수",
+      "notice_type": "prebid"
+    },
+    "R26BD00220245": {
+      "notified_at": "2026-04-28T08:40:06.786335+09:00",
+      "keyword": "환경",
       "notice_type": "prebid"
     }
   }

@@ -20,7 +20,8 @@ env:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    # Keep manual checks away from ubuntu-latest/24.x capacity incidents.
+    runs-on: ubuntu-22.04
     defaults:
       run:
         working-directory: server

@@ -1,11 +1,14 @@
 # 입찰알리미 서버
 
-나라장터(G2B) 입찰공고 및 사전규격을 10분마다 확인하고, 키워드가 매칭되는 공고를 FCM 푸시 알림으로 발송합니다.
+나라장터(G2B) 입찰공고 및 사전규격을 확인하고, 키워드가 매칭되는 공고를 FCM 푸시 알림으로 발송합니다.
+
+> 운영 스케줄러는 `off-love/g2b-bot` 저장소에서만 10분마다 실행합니다.
+> 이 iOS 저장소의 내장 서버 워크플로우는 중복 알림 방지를 위해 수동 실행용으로만 유지합니다.
 
 ## 아키텍처
 
 ```
-GitHub Actions (10분 cron)
+GitHub Actions (수동 실행)
     → 나라장터 OpenAPI 호출 (입찰공고 + 사전규격)
     → 키워드 매칭 + 중복 체크
     → FCM Topic 메시지 발송
@@ -17,7 +20,7 @@ GitHub Actions (10분 cron)
 ```
 server/
 ├── .github/workflows/
-│   └── check_notices.yml        # 10분 간격 cron
+│   └── check_notices.yml        # 수동 실행 전용
 ├── src/
 │   ├── main.py                  # 메인 실행 스크립트
 │   ├── api/

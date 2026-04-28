@@ -1,9 +1,9 @@
-name: 입찰알리미 공고 체크
+name: 입찰알리미 공고 체크 (수동)
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'  # 10분마다 실행
-  workflow_dispatch:          # 수동 실행
+  # 운영 스케줄러는 off-love/g2b-bot 저장소에서만 실행합니다.
+  # 이 앱 저장소의 내장 서버는 긴급 점검/수동 실행용으로만 유지합니다.
+  workflow_dispatch:
 
 permissions:
   contents: write             # state.json 커밋 권한

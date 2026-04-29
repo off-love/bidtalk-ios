@@ -58,7 +58,7 @@ enum TopicHasher {
     /// - Parameters:
     ///     - keyword: 원본 키워드
     ///     - notificationType: "bid", "pre", "all"
-    ///     - bidCategories: "s,c,g" 형식의 쉼표 구분 문자열
+    ///     - bidCategories: 앱 저장값은 단일 업무구분("s", "c", "g")이며, 과거 데이터 호환을 위해 쉼표 구분도 처리
     static func activeTopics(for keyword: String, notificationType: String, bidCategories: String) -> [String] {
         var topics = [String]()
         

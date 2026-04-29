@@ -95,7 +95,7 @@ def _parse_prebid_notice(item: dict[str, Any], bid_type: BidType) -> PreBidNotic
 def fetch_prebid_notices(
     bid_type: BidType,
     keyword: str = "",
-    buffer_minutes: int = 30,
+    buffer_minutes: int = 60,
     max_results: int = 999,
 ) -> list[PreBidNotice]:
     """사전규격 공개 목록 조회 (페이지네이션 지원)

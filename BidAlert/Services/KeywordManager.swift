@@ -8,7 +8,8 @@ final class KeywordManager {
     static let maxKeywords = 3
 
     private static let broadKeywordBlocklist: Set<String> = [
-        "공고", "공사", "계약", "나라장터", "물품", "사업", "용역", "입찰", "조달",
+        "공고", "공사", "계약", "구매", "관리", "나라장터", "물품", "사업", "설계",
+        "시스템", "신축", "용역", "유지", "유지보수", "입찰", "조달",
     ]
 
     /// 키워드를 추가하고 FCM 토픽을 구독합니다

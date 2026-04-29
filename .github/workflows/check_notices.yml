@@ -21,34 +21,34 @@ jobs:
     steps:
       - name: Validate dispatch token
         env:
-          G2B_BOT_DISPATCH_TOKEN: ${{ secrets.G2B_BOT_DISPATCH_TOKEN }}
+          BIDTALK_WORKER_DISPATCH_TOKEN: ${{ secrets.BIDTALK_WORKER_DISPATCH_TOKEN || secrets.G2B_BOT_DISPATCH_TOKEN }}
         run: |
-          test -n "${G2B_BOT_DISPATCH_TOKEN}" || {
-            echo "G2B_BOT_DISPATCH_TOKEN secret is missing";
-            echo "Set a fine-grained token that can trigger workflows in off-love/g2b-bot.";
+          test -n "${BIDTALK_WORKER_DISPATCH_TOKEN}" || {
+            echo "BIDTALK_WORKER_DISPATCH_TOKEN secret is missing";
+            echo "Set a fine-grained token that can trigger workflows in off-love/bidtalk-worker.";
             exit 1;
           }
 
       - name: Log dispatch context
         run: |
           echo "This workflow does not send notifications directly."
-          echo "It triggers off-love/g2b-bot/.github/workflows/check_notices.yml on main."
+          echo "It triggers off-love/bidtalk-worker/.github/workflows/check_notices.yml on main."
           echo "Requested by: ${{ github.actor }}"
           echo "Reason: ${{ inputs.reason || 'not provided' }}"
 
-      - name: Dispatch g2b-bot notice checker
+      - name: Dispatch bidtalk-worker notice checker
         env:
-          G2B_BOT_DISPATCH_TOKEN: ${{ secrets.G2B_BOT_DISPATCH_TOKEN }}
+          BIDTALK_WORKER_DISPATCH_TOKEN: ${{ secrets.BIDTALK_WORKER_DISPATCH_TOKEN || secrets.G2B_BOT_DISPATCH_TOKEN }}
         run: |
           curl --fail-with-body --silent --show-error \
             -X POST \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${G2B_BOT_DISPATCH_TOKEN}" \
+            -H "Authorization: Bearer ${BIDTALK_WORKER_DISPATCH_TOKEN}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/off-love/g2b-bot/actions/workflows/check_notices.yml/dispatches \
+            https://api.github.com/repos/off-love/bidtalk-worker/actions/workflows/check_notices.yml/dispatches \
             -d '{"ref":"main"}'
 
       - name: Show next step
         run: |
           echo "Dispatch request accepted."
-          echo "Check the run in off-love/g2b-bot > Actions > 입찰알리미 공고 체크."
+          echo "Check the run in off-love/bidtalk-worker > Actions > 입찰알리미 공고 체크."

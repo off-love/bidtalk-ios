@@ -13,16 +13,17 @@ bidtalk-ios
 = FCM Topic 구독/해제
 = GitHub Actions 스케줄러 없음
 
-g2b-bot
+bidtalk-worker
 = 운영 알림 워커
 = 30분마다 나라장터 조회
 = Firebase FCM 발송
 = state 갱신
 ```
 
-실제 입찰공고/사전규격 조회와 푸시 발송은 `off-love/g2b-bot`에서만 수행합니다.
-이 저장소의 `.github/workflows/check_notices.yml`은 수동 요청 시 `g2b-bot` 워크플로를 호출하는 용도로만 사용합니다.
-수동 호출 기능을 쓰려면 이 저장소에 `G2B_BOT_DISPATCH_TOKEN` secret이 필요합니다.
+실제 입찰공고/사전규격 조회와 푸시 발송은 `off-love/bidtalk-worker`에서만 수행합니다.
+이 저장소의 `.github/workflows/check_notices.yml`은 수동 요청 시 `bidtalk-worker` 워크플로를 호출하는 용도로만 사용합니다.
+수동 호출 기능을 쓰려면 이 저장소에 `BIDTALK_WORKER_DISPATCH_TOKEN` secret이 필요합니다.
+기존 `G2B_BOT_DISPATCH_TOKEN` secret도 호환용으로 계속 인식합니다.
 
 ## 주요 제한
 

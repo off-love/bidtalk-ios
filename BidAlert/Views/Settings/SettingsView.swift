@@ -69,13 +69,19 @@ struct SettingsView: View {
                 helpRow(
                     icon: "clock.fill",
                     title: "알림 확인 주기",
-                    message: "평일은 30분마다, 주말은 2시간마다 입찰공고와 사전규격을 확인해요."
+                    message: "새 공고는 평일 30분마다, 주말 2시간마다 확인해요."
                 )
 
                 helpRow(
                     icon: "tag.fill",
                     title: "키워드 등록",
                     message: "키워드는 최대 \(KeywordManager.maxKeywords)개까지 등록할 수 있어요."
+                )
+
+                helpRow(
+                    icon: "bell.badge.fill",
+                    title: "알림 범위",
+                    message: "등록한 키워드는 입찰공고와 사전규격 알림을 함께 받아요."
                 )
 
                 helpRow(

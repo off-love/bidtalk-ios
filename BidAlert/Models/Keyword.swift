@@ -8,18 +8,18 @@ final class Keyword {
     var text: String               // 원본 키워드 ("CCTV")
     var bidTopicHash: String       // [Legacy] "bid_b29dbba57df61de7"
     var preTopicHash: String       // [Legacy] "pre_b29dbba57df61de7"
-    var notificationType: String   // "bid" | "pre" | "all"
+    var notificationType: String   // [Legacy] always "all"
     var bidCategoriesOption: String? // "s" | "c" | "g" (용역:s, 공사:c, 물품:g)
     var isActive: Bool             // 일시중지 여부
     var createdAt: Date
 
-    init(text: String, notificationType: String = "all", bidCategories: String = "s") {
+    init(text: String, bidCategories: String = "s") {
         self.id = UUID()
         self.text = text
         let legacyTopics = TopicHasher.legacyTopics(for: text)
         self.bidTopicHash = legacyTopics[0]
         self.preTopicHash = legacyTopics[1]
-        self.notificationType = notificationType
+        self.notificationType = "all"
         self.bidCategoriesOption = Self.singleBidCategory(from: bidCategories)
         self.isActive = true
         self.createdAt = Date()
@@ -34,7 +34,7 @@ final class Keyword {
     /// 이 키워드가 구독해야 하는 토픽 목록
     var activeTopics: [String] {
         guard isActive else { return [] }
-        return TopicHasher.activeTopics(for: text, notificationType: notificationType, bidCategories: bidCategories)
+        return TopicHasher.activeTopics(for: text, notificationType: "all", bidCategories: bidCategories)
     }
 
     /// 이 키워드의 모든 토픽 (구독 해제 시 사용)

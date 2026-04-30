@@ -7,32 +7,8 @@ struct KeywordChipView: View {
     var onTap: () -> Void
     var onDelete: () -> Void
 
-    /// 알림 유형에 따른 아이콘
-    private var typeIcon: String? {
-        switch keyword.notificationType {
-        case "bid": return "doc.text.fill"
-        case "pre": return "clipboard.fill"
-        default: return nil  // "all"이면 아이콘 없음
-        }
-    }
-
-    /// 알림 유형에 따른 색상
-    private var typeColor: Color {
-        switch keyword.notificationType {
-        case "bid": return DS.Colors.primaryFallback
-        case "pre": return DS.Colors.prebid
-        default: return DS.Colors.primaryFallback
-        }
-    }
-
     var body: some View {
         HStack(spacing: 5) {
-            // 알림 유형 아이콘
-            if let icon = typeIcon {
-                Image(systemName: icon)
-                    .font(.caption2)
-            }
-
             Text(keyword.text)
                 .font(.subheadline.weight(.medium))
                 .strikethrough(!keyword.isActive, color: DS.Colors.textSecondary)
@@ -50,25 +26,25 @@ struct KeywordChipView: View {
             Button(action: onDelete) {
                 Image(systemName: "xmark")
                     .font(.caption2.bold())
-                    .foregroundStyle(keyword.isActive ? typeColor : DS.Colors.textSecondary)
+                    .foregroundStyle(keyword.isActive ? DS.Colors.primaryFallback : DS.Colors.textSecondary)
             }
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(
             keyword.isActive
-                ? typeColor.opacity(0.1)
+                ? DS.Colors.primaryFallback.opacity(0.1)
                 : Color.gray.opacity(0.1)
         )
         .foregroundStyle(
             keyword.isActive
-                ? typeColor
+                ? DS.Colors.primaryFallback
                 : DS.Colors.textSecondary
         )
         .clipShape(Capsule())
         .onTapGesture(perform: onTap)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(keyword.text) 키워드, \(keyword.notificationType == "bid" ? "입찰공고" : keyword.notificationType == "pre" ? "사전규격" : "전체"), \(categoryBadgeText(categoryString: keyword.bidCategories))")
+        .accessibilityLabel("\(keyword.text) 키워드, 입찰공고와 사전규격, \(categoryBadgeText(categoryString: keyword.bidCategories))")
         .accessibilityHint("탭하여 설정을 변경하세요")
     }
     
@@ -92,19 +68,6 @@ struct KeywordDetailSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                // 알림 유형
-                Section("알림 유형") {
-                    Picker("유형 선택", selection: Binding(
-                        get: { keyword.notificationType },
-                        set: { KeywordManager.updateNotificationType(keyword, type: $0) }
-                    )) {
-                        Text("전체").tag("all")
-                        Text("입찰공고만").tag("bid")
-                        Text("사전규격만").tag("pre")
-                    }
-                    .pickerStyle(.segmented)
-                }
-
                 // 업무구분
                 Section("업무구분") {
                     Picker("업무구분", selection: Binding(

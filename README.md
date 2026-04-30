@@ -15,7 +15,7 @@ bidtalk-ios
 
 bidtalk-worker
 = 운영 알림 워커
-= 30분마다 나라장터 조회
+= 평일 30분, 주말 2시간 간격으로 나라장터 조회
 = Firebase FCM 발송
 = state 갱신
 ```
@@ -29,5 +29,6 @@ bidtalk-worker
 
 - 사용자당 키워드 최대 3개
 - 키워드당 업무구분 1개
+- 모든 키워드는 입찰공고와 사전규격 알림을 함께 구독
 - 너무 넓은 키워드 차단
 - Firebase FCM Topic 방식 유지

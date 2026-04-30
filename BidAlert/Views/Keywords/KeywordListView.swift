@@ -8,7 +8,6 @@ struct KeywordListView: View {
     var notificationService: NotificationService
 
     @State private var newKeyword = ""
-    @State private var selectedNotificationType = "all"  // 알림 유형 기본값
     @State private var selectedBidCategory = "s"         // 업무구분 기본값 (용역)
     @State private var errorMessage: String?
     @State private var showError = false
@@ -94,20 +93,6 @@ struct KeywordListView: View {
                         .font(.subheadline.bold())
                         .foregroundStyle(DS.Colors.primaryFallback)
                 }
-            }
-
-            // 알림 유형 선택
-            HStack(spacing: DS.Spacing.xs) {
-                Text("알림 유형")
-                    .font(.caption)
-                    .foregroundStyle(DS.Colors.textSecondary)
-
-                Picker("알림 유형", selection: $selectedNotificationType) {
-                    Text("모두").tag("all")
-                    Text("입찰공고").tag("bid")
-                    Text("사전규격").tag("pre")
-                }
-                .pickerStyle(.segmented)
             }
 
             // 업무구분 선택
@@ -207,7 +192,7 @@ struct KeywordListView: View {
         HStack {
             Image(systemName: "info.circle.fill")
                 .foregroundStyle(DS.Colors.primaryFallback)
-            Text("입찰공고와 사전규격을\n평일 30분, 주말 2시간마다 확인해요")
+            Text("새 공고는\n평일 30분, 주말 2시간마다 확인해요")
                 .font(.caption)
                 .foregroundStyle(DS.Colors.textSecondary)
             Spacer()
@@ -223,7 +208,6 @@ struct KeywordListView: View {
     private func addKeyword() {
         let result = KeywordManager.addKeyword(
             newKeyword,
-            notificationType: selectedNotificationType,
             bidCategories: selectedBidCategory,
             context: modelContext
         )

@@ -12,8 +12,8 @@ final class KeywordManager {
         "시스템", "신축", "용역", "유지", "유지보수", "입찰", "조달",
     ]
 
-    /// 키워드를 추가하고 FCM 토픽을 구독합니다
-    static func addKeyword(_ text: String, notificationType: String = "all", bidCategories: String = "s", context: ModelContext) -> Result<Keyword, KeywordError> {
+    /// 키워드를 추가하고 입찰공고/사전규격 FCM 토픽을 함께 구독합니다
+    static func addKeyword(_ text: String, bidCategories: String = "s", context: ModelContext) -> Result<Keyword, KeywordError> {
         let trimmed = text.precomposedStringWithCanonicalMapping.trimmingCharacters(in: .whitespacesAndNewlines)
 
         // 입력 검증
@@ -36,7 +36,6 @@ final class KeywordManager {
         // 키워드 생성 + 저장
         let keyword = Keyword(
             text: trimmed,
-            notificationType: notificationType,
             bidCategories: singleBidCategory(from: bidCategories)
         )
         context.insert(keyword)
@@ -64,18 +63,6 @@ final class KeywordManager {
         }
     }
 
-    /// 알림 유형 변경
-    static func updateNotificationType(_ keyword: Keyword, type: String) {
-        // 기존 토픽 모두 해제
-        unsubscribeAllTopics(for: keyword)
-        // 유형 변경
-        keyword.notificationType = type
-        // 새 토픽 구독
-        if keyword.isActive {
-            subscribeTopics(for: keyword)
-        }
-    }
-
     /// 업무구분 변경
     static func updateBidCategories(_ keyword: Keyword, categories: String) {
         // 기존 토픽 모두 해제
@@ -95,6 +82,15 @@ final class KeywordManager {
         guard let keywords = try? context.fetch(descriptor) else {
             print("❌ 키워드 조회 실패: 토픽 구독 복구 건너뜀")
             return
+        }
+
+        var migratedLegacyNotificationType = false
+        for keyword in keywords where keyword.notificationType != "all" {
+            keyword.notificationType = "all"
+            migratedLegacyNotificationType = true
+        }
+        if migratedLegacyNotificationType {
+            try? context.save()
         }
 
         let activeKeywords = keywords.filter(\.isActive)

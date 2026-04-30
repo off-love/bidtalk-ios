@@ -18,10 +18,10 @@ struct HistoryCardView: View {
             }
 
             VStack(alignment: .leading, spacing: DS.Spacing.xs) {
-                // 키워드 뱃지 + 마감 임박
+                // 알림유형 + 업무구분 + 마감 임박
                 HStack(spacing: DS.Spacing.xs) {
                     // 유형 뱃지
-                    Text(item.isBid ? "입찰공고" : "사전규격")
+                    Text(noticeTypeText)
                         .font(.caption2.bold())
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
@@ -29,14 +29,16 @@ struct HistoryCardView: View {
                         .foregroundStyle(item.isBid ? DS.Colors.primaryFallback : DS.Colors.prebid)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
 
-                    // 키워드 태그
-                    Text(item.keyword)
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(DS.Colors.success.opacity(0.15))
-                        .foregroundStyle(DS.Colors.success)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                    // 업무구분 태그
+                    if !item.bidTypeDisplay.isEmpty {
+                        Text(item.bidTypeDisplay)
+                            .font(.caption2.bold())
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(DS.Colors.textSecondary.opacity(0.10))
+                            .foregroundStyle(DS.Colors.textSecondary)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                    }
 
                     Spacer()
 
@@ -57,14 +59,11 @@ struct HistoryCardView: View {
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(2)
 
-                // 기관 + 업종
+                // 기관
                 HStack(spacing: 4) {
                     Image(systemName: "building.2.fill")
                         .font(.caption2)
                     Text(item.agency)
-                    if !item.bidTypeDisplay.isEmpty {
-                        Text("(\(item.bidTypeDisplay))")
-                    }
                 }
                 .font(.caption)
                 .foregroundStyle(DS.Colors.textSecondary)
@@ -123,10 +122,19 @@ struct HistoryCardView: View {
         .clipShape(RoundedRectangle(cornerRadius: DS.Radius.md))
         .shadow(color: .black.opacity(0.04), radius: 4, y: 2)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(item.keyword) 키워드, \(item.title), \(item.agency), \(item.priceDisplay)")
+        .accessibilityLabel(accessibilityText)
     }
 
     // MARK: - Helpers
+
+    private var noticeTypeText: String {
+        item.isBid ? "입찰공고" : "사전규격"
+    }
+
+    private var accessibilityText: String {
+        let bidTypeText = item.bidTypeDisplay.isEmpty ? "" : " \(item.bidTypeDisplay)"
+        return "\(noticeTypeText)\(bidTypeText), \(item.title), \(item.agency), 키워드 \(item.keyword), \(item.priceDisplay)"
+    }
 
     private func highlightedTitle(title: String, keyword: String) -> Text {
         var attrString = AttributedString(title)

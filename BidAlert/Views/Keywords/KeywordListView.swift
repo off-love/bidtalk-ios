@@ -207,7 +207,7 @@ struct KeywordListView: View {
         HStack {
             Image(systemName: "info.circle.fill")
                 .foregroundStyle(DS.Colors.primaryFallback)
-            Text("입찰공고 + 사전규격을\n30분마다 확인하고 있어요")
+            Text("입찰공고와 사전규격을\n평일 30분, 주말 2시간마다 확인해요")
                 .font(.caption)
                 .foregroundStyle(DS.Colors.textSecondary)
             Spacer()

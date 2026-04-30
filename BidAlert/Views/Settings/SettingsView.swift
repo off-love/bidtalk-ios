@@ -65,7 +65,31 @@ struct SettingsView: View {
                 }
             }
 
+            Section("도움말") {
+                helpRow(
+                    icon: "clock.fill",
+                    title: "알림 확인 주기",
+                    message: "평일은 30분마다, 주말은 2시간마다 입찰공고와 사전규격을 확인해요."
+                )
 
+                helpRow(
+                    icon: "tag.fill",
+                    title: "키워드 등록",
+                    message: "키워드는 최대 \(KeywordManager.maxKeywords)개까지 등록할 수 있어요."
+                )
+
+                helpRow(
+                    icon: "folder.fill",
+                    title: "업무구분",
+                    message: "키워드마다 용역, 공사, 물품 중 하나를 선택해요."
+                )
+
+                helpRow(
+                    icon: "tray.full.fill",
+                    title: "알림 히스토리",
+                    message: "받은 알림은 알림 탭에서 다시 확인할 수 있어요."
+                )
+            }
 
             // 면책 조항
             Section {
@@ -93,6 +117,28 @@ struct SettingsView: View {
     }
 
     // MARK: - Helpers
+
+    private func helpRow(icon: String, title: String, message: String) -> some View {
+        HStack(alignment: .top, spacing: DS.Spacing.sm) {
+            Image(systemName: icon)
+                .font(.subheadline)
+                .foregroundStyle(DS.Colors.primaryFallback)
+                .frame(width: 20)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(DS.Colors.textPrimary)
+
+                Text(message)
+                    .font(.caption)
+                    .foregroundStyle(DS.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(.vertical, 2)
+    }
+
     private func resetAllData() {
         // 1. 초기화 시점 기록 (이 시점 이전의 알림은 저장하지 않음)
         UserDefaults.standard.set(Date(), forKey: "lastDataResetDate")

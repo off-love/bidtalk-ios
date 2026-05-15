@@ -9,7 +9,7 @@ final class Keyword {
     var bidTopicHash: String       // [Legacy] "bid_b29dbba57df61de7"
     var preTopicHash: String       // [Legacy] "pre_b29dbba57df61de7"
     var notificationType: String   // [Legacy] always "all"
-    var bidCategoriesOption: String? // "s" | "c" | "g" (용역:s, 공사:c, 물품:g)
+    var bidCategoriesOption: String? // "s", "c", "g" 또는 "s,c,g" (용역:s, 공사:c, 물품:g)
     var isActive: Bool             // 일시중지 여부
     var createdAt: Date
 
@@ -20,15 +20,15 @@ final class Keyword {
         self.bidTopicHash = legacyTopics[0]
         self.preTopicHash = legacyTopics[1]
         self.notificationType = "all"
-        self.bidCategoriesOption = Self.singleBidCategory(from: bidCategories)
+        self.bidCategoriesOption = Self.normalizedBidCategories(from: bidCategories)
         self.isActive = true
         self.createdAt = Date()
     }
 
     /// 안전한 업무구분 반환 (초기 마이그레이션 대비)
     var bidCategories: String {
-        get { return Self.singleBidCategory(from: bidCategoriesOption) }
-        set { bidCategoriesOption = Self.singleBidCategory(from: newValue) }
+        get { return Self.normalizedBidCategories(from: bidCategoriesOption) }
+        set { bidCategoriesOption = Self.normalizedBidCategories(from: newValue) }
     }
 
     /// 이 키워드가 구독해야 하는 토픽 목록
@@ -42,15 +42,18 @@ final class Keyword {
         return TopicHasher.allPossibleTopics(for: text) + TopicHasher.legacyTopics(for: text)
     }
 
-    private static func singleBidCategory(from categories: String?) -> String {
+    private static func normalizedBidCategories(from categories: String?) -> String {
         guard let categories else { return TopicHasher.BidCategory.service.rawValue }
 
-        let firstCategory = categories
+        var seen = Set<String>()
+        let validCategories = categories
             .split(separator: ",")
             .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            .compactMap { TopicHasher.BidCategory(rawValue: $0) }
-            .first
+            .compactMap { TopicHasher.BidCategory(rawValue: $0)?.rawValue }
+            .filter { seen.insert($0).inserted }
 
-        return firstCategory?.rawValue ?? TopicHasher.BidCategory.service.rawValue
+        return validCategories.isEmpty
+            ? TopicHasher.BidCategory.service.rawValue
+            : validCategories.joined(separator: ",")
     }
 }

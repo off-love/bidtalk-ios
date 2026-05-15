@@ -55,7 +55,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
 
     // APNs 토큰 수신
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
+        #if DEBUG
+        Messaging.messaging().setAPNSToken(deviceToken, type: .sandbox)
+        #else
+        Messaging.messaging().setAPNSToken(deviceToken, type: .prod)
+        #endif
+        refreshFCMTokenAndRestoreSubscriptions()
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -150,6 +155,24 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
             UNUserNotificationCenter.current().setBadgeCount(count)
         } else {
             UIApplication.shared.applicationIconBadgeNumber = count
+        }
+    }
+
+    private func refreshFCMTokenAndRestoreSubscriptions() {
+        Messaging.messaging().token { token, error in
+            if let error {
+                print("❌ FCM 토큰 갱신 실패: \(error.localizedDescription)")
+                return
+            }
+
+            print("📱 FCM Token refreshed: \(token ?? "nil")")
+            self.restoreKeywordSubscriptions()
+        }
+    }
+
+    private func restoreKeywordSubscriptions() {
+        Task { @MainActor in
+            KeywordManager.restoreSubscriptions(context: BidAlertApp.sharedModelContainer.mainContext)
         }
     }
 }

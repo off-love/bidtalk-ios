@@ -32,6 +32,7 @@ struct BidAlertApp: App {
 // MARK: - AppDelegate (Firebase + FCM 설정)
 
 class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+    private var hasAPNSToken = false
 
     func application(
         _ application: UIApplication,
@@ -46,15 +47,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
         // 원격 알림 등록
         application.registerForRemoteNotifications()
 
-        Task { @MainActor in
-            KeywordManager.restoreSubscriptions(context: BidAlertApp.sharedModelContainer.mainContext)
-        }
-
         return true
     }
 
     // APNs 토큰 수신
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        hasAPNSToken = true
         #if DEBUG
         Messaging.messaging().setAPNSToken(deviceToken, type: .sandbox)
         #else
@@ -71,9 +69,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("📱 FCM Token: \(fcmToken ?? "nil")")
 
-        Task { @MainActor in
-            KeywordManager.restoreSubscriptions(context: BidAlertApp.sharedModelContainer.mainContext)
+        guard hasAPNSToken else {
+            print("ℹ️ APNs 토큰 준비 후 FCM 토픽 구독을 복구합니다")
+            return
         }
+
+        restoreKeywordSubscriptions()
     }
 
     // 포그라운드 알림 표시 + SwiftData 저장

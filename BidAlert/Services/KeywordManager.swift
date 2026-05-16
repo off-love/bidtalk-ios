@@ -36,7 +36,7 @@ final class KeywordManager {
         // 키워드 생성 + 저장
         let keyword = Keyword(
             text: trimmed,
-            bidCategories: singleBidCategory(from: bidCategories)
+            bidCategories: normalizedBidCategories(from: bidCategories)
         )
         context.insert(keyword)
 
@@ -68,7 +68,7 @@ final class KeywordManager {
         // 기존 토픽 모두 해제
         unsubscribeAllTopics(for: keyword)
         // 업무구분 변경
-        keyword.bidCategories = singleBidCategory(from: categories)
+        keyword.bidCategories = normalizedBidCategories(from: categories)
         // 새 토픽 구독
         if keyword.isActive {
             subscribeTopics(for: keyword)
@@ -156,14 +156,17 @@ final class KeywordManager {
             .lowercased()
     }
 
-    private static func singleBidCategory(from categories: String) -> String {
-        let firstCategory = categories
+    private static func normalizedBidCategories(from categories: String) -> String {
+        var seen = Set<String>()
+        let validCategories = categories
             .split(separator: ",")
             .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            .compactMap { TopicHasher.BidCategory(rawValue: $0) }
-            .first
+            .compactMap { TopicHasher.BidCategory(rawValue: $0)?.rawValue }
+            .filter { seen.insert($0).inserted }
 
-        return firstCategory?.rawValue ?? TopicHasher.BidCategory.service.rawValue
+        return validCategories.isEmpty
+            ? TopicHasher.BidCategory.service.rawValue
+            : validCategories.joined(separator: ",")
     }
 }
 

@@ -21,7 +21,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.jumi.bidalert
         MARKETING_VERSION: "1.05"
-        CURRENT_PROJECT_VERSION: "8"
+        CURRENT_PROJECT_VERSION: "9"
         GENERATE_INFOPLIST_FILE: true
         INFOPLIST_KEY_CFBundleDisplayName: "입찰톡"
         INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.business"
